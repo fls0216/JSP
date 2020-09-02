@@ -1,0 +1,23 @@
+package mybean.index;
+
+public class car {
+	private String plateNumber;
+	private long parkingTime;
+
+	public car(String plateNumber, long parkingTime) {
+		super();
+		this.plateNumber = plateNumber;
+		this.parkingTime = parkingTime;
+	}
+
+	public String getPlateNumber() {
+		return plateNumber;
+	}
+
+	public long getParkingTime() {
+		return parkingTime;
+	}
+
+}
+	
+

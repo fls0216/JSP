@@ -1,0 +1,23 @@
+package mybean.scope;
+import java.util.Random;
+
+public class DiseBean {
+	private int min;
+	private int max;
+	private int conter;
+	private Random rand = new Random();
+	
+	public int getminNumber() {return min;}
+	public void setminNumber(int min) {this.min = min;}
+	
+	public int getmaxNumber() {return max;}
+	public void setmaxNumber(int max) {this.max = max;}
+	
+	public void getConter(int conter) {this.conter = conter;}
+	
+	public int getRandomNumber() {
+		return 0;
+	}
+	
+
+}

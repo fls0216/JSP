@@ -1,0 +1,62 @@
+package beans;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import dbcp.DBConnectionMgr;
+
+
+public class BoardDao {
+	private Connection con; //DB 연결
+	private PreparedStatement stmt; // 자료전달
+	private ResultSet rs; // 결과아
+	private DBConnectionMgr pool;
+	
+	public BoardDao() {
+		try {
+			pool = DBConnectionMgr.getInstance();
+	
+		}catch(Exception err) {
+			System.out.println("BoardDao()에서 오류 :" + err);
+		}
+	}
+	
+	//List.jsp
+	public List<BoardDto> getBoardList() {
+		ArrayList<BoardDto> list = new ArrayList<BoardDto>();
+		
+		String sql = "select * from tblboard";
+		
+		try {
+			con = pool.getConnection();
+			stmt = con.prepareStatement(sql);
+			rs = stmt.executeQuery(sql);
+			
+			while(rs.next()){
+				BoardDto dto = new BoardDto();
+				dto.setB_content(rs.getString("b_content"));
+				dto.setB_count(rs.getInt("b_count"));
+				dto.setB_depth(rs.getInt("b_depth"));
+				dto.setB_email(rs.getString("b_email"));
+				dto.setB_homepage(rs.getString("b_homepage"));
+				dto.setB_ip(rs.getString("b_ip"));
+				dto.setB_name(rs.getString("b_name"));
+				dto.setB_num(rs.getInt("b_num"));
+				dto.setB_pass(rs.getString("b_pass"));
+				dto.setB_pos(rs.getInt("b_pos"));
+				dto.setB_ragdate(rs.getString("b_regdate"));
+				dto.setB_subject(rs.getString("b_subject"));
+				
+				list.add(dto);
+			}
+		}catch(Exception err){
+			System.out.println("getBoardList() 오류 : " + err);
+		}finally {
+			
+		}
+		
+		return list;
+	}
+}
+	
